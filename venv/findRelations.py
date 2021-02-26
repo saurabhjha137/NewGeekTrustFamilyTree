@@ -20,14 +20,13 @@ class FindRelationship :
 
     # - # finds sibling (brother or sister)
     # - # for brother siblingGender = 'Male'
-    # - # for sister siblingGender = 'Female
+    # - # for sister siblingGender = 'Female'
     def find_siblings(self, siblingGender):
         siblings = []
         currParent = self.member.parent
         if currParent:
             for child in currParent.children:
-                print(child.name + ' ' + child.gender)
-                if (child.name != self.member.name) and (child.gender == siblingGender):
+                if (child.name is not self.member.name) and (child.gender == siblingGender):
                     siblings.append(child.name)
 
         return siblings
