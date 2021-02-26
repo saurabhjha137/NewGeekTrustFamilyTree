@@ -17,11 +17,11 @@ if __name__ == '__main__':
             motherName = eachLine.split(' ')[1]
             childName = eachLine.split(' ')[2]
             childGender = eachLine.split(' ')[3]
-            task.add_input_child(motherName,childName,childGender, familyTree, familyHead)
+            task.add_input_child(motherName,childName,childGender, familyHead)
         elif inputTask == 'GET_RELATIONSHIP':
             memberName = eachLine.split(' ')[1]
             relation = eachLine.split(' ')[2].replace('\n','')
-            task.get_relationship(memberName, relation, familyHead, familyTree)
+            task.get_relationship(memberName, relation, familyHead)
         else:
             print('No Such Task Defined in The Problem Statement')
 

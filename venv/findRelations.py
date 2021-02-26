@@ -26,7 +26,8 @@ class FindRelationship :
         currParent = self.member.parent
         if currParent:
             for child in currParent.children:
-                if child.name != self.member.name and child.gender == siblingGender:
+                print(child.name + ' ' + child.gender)
+                if (child.name != self.member.name) and (child.gender == siblingGender):
                     siblings.append(child.name)
 
         return siblings
@@ -50,7 +51,9 @@ class FindRelationship :
 
     # - # finds (brother-in-law or sister-in-law)
     # - # for brother-in-law inLawsGender = 'Male' & wifeORhusband = 'Female'
+    # - # brother-in-law ---> Spouse’s brothers, Husbands of siblings
     # - # for sister-in-Law inLawsGender = 'Female' & wifeORhusband = 'Male'
+    # - # sister-in-Law ---> Spouse’s sisters, Wives of siblings
     def find_in_laws(self, name, inLawsGender, wifeORhusband):
         inLaws = []
         sibling = []
@@ -62,7 +65,7 @@ class FindRelationship :
 
         else:
             for child in currParent.children:
-                if child.name != self.member.name and child.gender == wifeORhusband:
+                if (child.name != self.member.name) and (child.gender == wifeORhusband):
                     if child.spouseName is not None:
                         spouseOfSibling.append(child.spouseName)
 

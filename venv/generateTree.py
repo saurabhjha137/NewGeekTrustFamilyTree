@@ -54,14 +54,6 @@ class GenerateFamilyTree:
         else:
             return childNode
 
-    def search_member_using_familyHead(self, familyHead, memberName):
-        if familyHead.name == memberName or familyHead.spouseName == memberName:
-            return familyHead
-        else:
-            for child in familyHead.children:
-                testChild = self.search_member_using_familyHead(child, memberName)
-                if testChild:
-                    return testChild
 
     def add_child_to_mother(self, listOfFamilyMemberNode):
         memberRelationFile = open('familyMemberRelation.txt', 'r+')
@@ -72,4 +64,3 @@ class GenerateFamilyTree:
             childNode = self.search_child_in_listOfFamilyMemberNode(childName, listOfFamilyMemberNode)
             parentNode.add_child_node(childNode)
         memberRelationFile.close()
-        listOfFamilyMemberNode[0].print_family_tree()
