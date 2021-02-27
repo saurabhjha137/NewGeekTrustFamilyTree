@@ -50,7 +50,7 @@ class GenerateFamilyTree:
                 childNode = member
 
         if childNode is None:
-            raise TypeError("Child Not Found")
+            print("No Such Child Node")
         else:
             return childNode
 

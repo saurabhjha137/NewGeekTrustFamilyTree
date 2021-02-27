@@ -1,5 +1,4 @@
 from familyTree import FamilyTreeNode
-from generateTree import GenerateFamilyTree
 from getRelationships import GetRelationship
 
 

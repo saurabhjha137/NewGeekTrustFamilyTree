@@ -30,17 +30,12 @@ class FamilyTreeNode:
 
     # check if member has spouse or not i.e married or not
     def if_member_is_married(self):
-        if self.spouseName is not None:
-            return True
-        else:
-            return False
+        return self.spouseName is not None
 
+    # check if node == female and nodeName == mothername
     def if_parent_is_mother(self, motheName):
-        if (self.name == motheName and self.gender == 'Female') or \
-                (self.spouseName == motheName and self.spouseGender == 'Female'):
-            return True
-        else:
-            return False
+        return (self.name == motheName and self.gender == 'Female') or \
+                (self.spouseName == motheName and self.spouseGender == 'Female')
 
     # ---------can be used to print the tree ---------#
     def print_family_tree(self):

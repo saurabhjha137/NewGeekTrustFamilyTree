@@ -1,10 +1,9 @@
-from familyTree import FamilyTreeNode
-
-
 class FindRelationship:
-    # initializes member with the value of memberNode
-    # memberNode is reutrned after searching in family tree
-    # using search_member_using_familyHead in class GenerateFamilyTree
+    """"
+    initializes member with the value of memberNode
+    memberNode is reutrned after searching in family tree
+    using search_member_using_familyHead in class GenerateFamilyTree
+    """
     def __init__(self, memberNode):
         self.member = memberNode
 
