@@ -2,7 +2,9 @@ from familyTree import FamilyTreeNode
 from generateTree import GenerateFamilyTree
 from getRelationships import GetRelationship
 
+
 class InputTaskFunction:
+
     def search_member_using_familyHead(self, familyHead, memberName):
         if familyHead.name == memberName or familyHead.spouseName == memberName:
             return familyHead
@@ -12,12 +14,11 @@ class InputTaskFunction:
                 if testChild:
                     return testChild
 
-
-    def add_input_child(self,motherName,childName,childGender, familyHead):
+    def add_input_child(self, motherName, childName, childGender, familyHead):
         parent = self.search_member_using_familyHead(familyHead, motherName)
-        if parent :
+        if parent:
             if parent.if_parent_is_mother(motherName):
-                newMember = FamilyTreeNode(childName,childGender)
+                newMember = FamilyTreeNode(childName, childGender)
                 parent.add_child_node(newMember)
                 print("CHILD_ADDITION_SUCCEEDED")
             else:
@@ -25,10 +26,8 @@ class InputTaskFunction:
         else:
             print("PERSON_NOT_FOUND")
 
-
-
     def get_relationship(self, memberName, relation, familyHead):
-        member = self.search_member_using_familyHead(familyHead,memberName)
+        member = self.search_member_using_familyHead(familyHead, memberName)
         relative = GetRelationship(member)
         if member:
             if relation == "Son":

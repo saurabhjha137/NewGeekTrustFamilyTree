@@ -1,8 +1,9 @@
 from familyTree import FamilyTreeNode
 
+
 class GenerateFamilyTree:
 
-    def add_single_member(self,memberData):
+    def add_single_member(self, memberData):
         memberName = memberData[0]
         memberGender = memberData[1].replace('\n', '')
         node = FamilyTreeNode(memberName, memberGender)
@@ -15,7 +16,6 @@ class GenerateFamilyTree:
         memberSpouseGender = memberData[3].replace('\n', '')
         node = FamilyTreeNode(memberName, memberGender, memberSpouseName, memberSpouseGender)
         return node
-
 
     def create_member_nodes(self):
         familyMemberFile = open('familyMember.txt', 'r+')
@@ -35,7 +35,7 @@ class GenerateFamilyTree:
     def search_parent_in_listOfFamilyMemberNode(self, motherName, listOfFamilyMemberNode):
         parentNode = None
         for member in listOfFamilyMemberNode:
-            if member.if_member_is_married() :
+            if member.if_member_is_married():
                 if member.name == motherName or member.spouseName == motherName:
                     parentNode = member
         if parentNode is None:
@@ -46,7 +46,7 @@ class GenerateFamilyTree:
     def search_child_in_listOfFamilyMemberNode(self, childName, listOfFamilyMemberNode):
         childNode = None
         for member in listOfFamilyMemberNode:
-            if member.name == childName :
+            if member.name == childName:
                 childNode = member
 
         if childNode is None:
@@ -54,12 +54,11 @@ class GenerateFamilyTree:
         else:
             return childNode
 
-
     def add_child_to_mother(self, listOfFamilyMemberNode):
         memberRelationFile = open('familyMemberRelation.txt', 'r+')
         for eachLine in memberRelationFile:
             motherName = eachLine.split(' ')[0]
-            childName = eachLine.split(' ')[1].replace('\n','')
+            childName = eachLine.split(' ')[1].replace('\n', '')
             parentNode = self.search_parent_in_listOfFamilyMemberNode(motherName, listOfFamilyMemberNode)
             childNode = self.search_child_in_listOfFamilyMemberNode(childName, listOfFamilyMemberNode)
             parentNode.add_child_node(childNode)

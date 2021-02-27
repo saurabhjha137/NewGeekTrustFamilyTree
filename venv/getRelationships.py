@@ -1,5 +1,6 @@
 from findRelations import FindRelationship
 
+
 class GetRelationship:
     # initializes relation to FindRelationship Class
     def __init__(self, member):
