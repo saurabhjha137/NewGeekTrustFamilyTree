@@ -2,8 +2,10 @@
 
 
 class FamilyTreeNode:
-    # initializes node with parameters passed
-    # from GenerateTree.create_member_nodes()
+    """
+    initializes node with parameters passed
+    from GenerateTree.create_member_nodes()
+    """
     def __init__(self, name, gender, spouseName=None, spouseGender=None):
         self.name = name
         self.gender = gender
@@ -29,15 +31,15 @@ class FamilyTreeNode:
         return level
 
     # check if member has spouse or not i.e married or not
-    def if_member_is_married(self):
+    def is_married(self):
         return self.spouseName is not None
 
     # check if node == female and nodeName == mothername
-    def if_parent_is_mother(self, motheName):
+    def is_mother(self, motheName):
         return (self.name == motheName and self.gender == 'Female') or \
                 (self.spouseName == motheName and self.spouseGender == 'Female')
 
-    # ---------can be used to print the tree ---------#
+    # --------- can be used to print the tree ---------#
     def print_family_tree(self):
         spaces = '    ' * self.get_node_level() * 3
         prefix = spaces + "--> " if self.parent else " "
@@ -51,4 +53,4 @@ class FamilyTreeNode:
             for child in self.children:
                 child.print_family_tree()
 
-    # ---------------------  ***  ---------------------#
+    # ----------------------  ***  ----------------------#

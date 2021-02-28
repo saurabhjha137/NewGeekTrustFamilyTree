@@ -2,14 +2,15 @@ from familyTree import FamilyTreeNode
 
 
 class GenerateFamilyTree:
-
-    def add_single_member(self, memberData):
+    # creates and return single member node
+    def create_single_member(self, memberData):
         memberName = memberData[0]
         memberGender = memberData[1].replace('\n', '')
         node = FamilyTreeNode(memberName, memberGender)
         return node
 
-    def add_member_with_partner(self, memberData):
+    # creates and return married member node
+    def create_married_member(self, memberData):
         memberName = memberData[0]
         memberGender = memberData[1]
         memberSpouseName = memberData[2]
@@ -17,32 +18,47 @@ class GenerateFamilyTree:
         node = FamilyTreeNode(memberName, memberGender, memberSpouseName, memberSpouseGender)
         return node
 
+    # return single or married node
+    def single_or_married(self, memberData):
+        if len(memberData) == 2:
+            return self.create_single_member(memberData)
+        else:
+            return self.create_married_member(memberData)
+
+    # based on data in file: familyMember.txt
+    # create a list of nodes to be added in Family tree
     def create_member_nodes(self):
         familyMemberFile = open('familyMember.txt', 'r+')
         listOfFamilyMemberNode = []
         for eachLine in familyMemberFile:
             memberData = eachLine.split(' ')
-            if len(memberData) == 2:
-                treeNode = self.add_single_member(memberData)
-                listOfFamilyMemberNode.append(treeNode)
-            else:
-                treeNode = self.add_member_with_partner(memberData)
-                listOfFamilyMemberNode.append(treeNode)
-        familyMemberFile.close()
+            treeNode = self.single_or_married(memberData)
+            listOfFamilyMemberNode.append(treeNode)
 
+        familyMemberFile.close()
         return listOfFamilyMemberNode
 
+
+    # check if name is same or not
+    def is_name_same(self, motherName, member):
+        return (member.name == motherName) or (member.spouseName == motherName)
+
+    # search parent in the list of created nodes
+    # they have to be married
+    # their must contain member with motheName
     def search_parent_in_listOfFamilyMemberNode(self, motherName, listOfFamilyMemberNode):
         parentNode = None
         for member in listOfFamilyMemberNode:
-            if member.if_member_is_married():
-                if member.name == motherName or member.spouseName == motherName:
+            if member.is_married():
+                if self.is_name_same(motherName,member) :
                     parentNode = member
         if parentNode is None:
             print("PERSON_NOT_FOUND")
         else:
             return parentNode
 
+    # search child in list of created nodes
+    # must have same name as of childName
     def search_child_in_listOfFamilyMemberNode(self, childName, listOfFamilyMemberNode):
         childNode = None
         for member in listOfFamilyMemberNode:
@@ -54,7 +70,9 @@ class GenerateFamilyTree:
         else:
             return childNode
 
-    def add_child_to_mother(self, listOfFamilyMemberNode):
+    # based on data in file: familyMemberRelation.txt
+    # connects child to their parent node
+    def connect_child_to_mother(self, listOfFamilyMemberNode):
         memberRelationFile = open('familyMemberRelation.txt', 'r+')
         for eachLine in memberRelationFile:
             motherName = eachLine.split(' ')[0]

@@ -2,7 +2,11 @@ from findRelations import FindRelationship
 
 
 class GetRelationship:
-    # initializes relation to FindRelationship Class
+    """
+    initializes relation to FindRelationship Class
+    member is passed from InputTaskFuction Class
+    by get_relationship(), to find relationships
+    """
     def __init__(self, member):
         self.relation = FindRelationship(member)
 
@@ -46,11 +50,11 @@ class GetRelationship:
 
     # returns daughter
     def get_daughters(self, siblingGender='Female'):
-        return self.relation.find_siblings(siblingGender)
+        return self.relation.find_sibling(siblingGender)
 
     # returns son
     def get_sons(self, siblingGender='Male'):
-        return self.relation.find_siblings(siblingGender)
+        return self.relation.find_sibling(siblingGender)
 
     # returns siblings by merging son and daughter
     def get_siblings(self):

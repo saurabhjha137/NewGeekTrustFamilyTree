@@ -3,7 +3,8 @@ from getRelationships import GetRelationship
 
 
 class InputTaskFunction:
-
+    # searches the member in the Family tree using rootNode
+    # i.e. familyHead which is KingShan
     def search_member_using_familyHead(self, familyHead, memberName):
         if familyHead.name == memberName or familyHead.spouseName == memberName:
             return familyHead
@@ -13,17 +14,25 @@ class InputTaskFunction:
                 if testChild:
                     return testChild
 
+    # adds child to Family tree
+    def add_child_to_familyTree(self, parent, motherName, childName, childGender):
+        if parent.is_mother(motherName):
+            newMember = FamilyTreeNode(childName, childGender)
+            parent.add_child_node(newMember)
+            print("CHILD_ADDITION_SUCCEEDED")
+        else:
+            print("CHILD_ADDITION_FAILED")
+
+    # if parent is found adds child to Family Tree
     def add_input_child(self, motherName, childName, childGender, familyHead):
         parent = self.search_member_using_familyHead(familyHead, motherName)
         if parent:
-            if parent.if_parent_is_mother(motherName):
-                newMember = FamilyTreeNode(childName, childGender)
-                parent.add_child_node(newMember)
-                print("CHILD_ADDITION_SUCCEEDED")
-            else:
-                print("CHILD_ADDITION_FAILED")
+            self.add_child_to_familyTree(parent, motherName, childName, childGender)
         else:
             print("PERSON_NOT_FOUND")
+
+    # based on relation value finds relatives of the given member
+    # uses GetRelationShip class to find relation
 
     def get_relationship(self, memberName, relation, familyHead):
         member = self.search_member_using_familyHead(familyHead, memberName)
@@ -50,6 +59,7 @@ class InputTaskFunction:
             else:
                 listOfRelatives = []
             if listOfRelatives != []:
+                #print(listOfRelatives)
                 print(" ".join(listOfRelatives))
             else:
                 print("NONE")
