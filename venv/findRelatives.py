@@ -1,4 +1,4 @@
-class FindRelationship:
+class FindRelative:
     """
     initializes member with the value of memberNode
     memberNode is reutrned after searching in family tree

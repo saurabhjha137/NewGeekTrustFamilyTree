@@ -1,3 +1,5 @@
+# single member contains 2 data: name, gender
+SINGLE_MEMBER = 2
 from familyTree import FamilyTreeNode
 
 
@@ -20,10 +22,12 @@ class GenerateFamilyTree:
 
     # return single or married node
     def single_or_married(self, memberData):
-        if len(memberData) == 2:
-            return self.create_single_member(memberData)
+        if len(memberData) == SINGLE_MEMBER:
+            createdNode = self.create_single_member(memberData)
         else:
-            return self.create_married_member(memberData)
+            createdNode = self.create_married_member(memberData)
+
+        return createdNode
 
     # based on data in file: familyMember.txt
     # create a list of nodes to be added in Family tree

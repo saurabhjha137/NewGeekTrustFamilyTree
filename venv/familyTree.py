@@ -1,5 +1,4 @@
-# stucture of each Node in Family Tree
-
+# stucture of Family Tree
 
 class FamilyTreeNode:
     """

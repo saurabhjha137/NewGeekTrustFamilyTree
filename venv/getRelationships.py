@@ -1,14 +1,14 @@
-from findRelations import FindRelationship
+from findRelatives import FindRelative
 
 
 class GetRelationship:
     """
-    initializes relation to FindRelationship Class
+    initializes relation to FindRelative Class
     member is passed from InputTaskFuction Class
     by get_relationship(), to find relationships
     """
     def __init__(self, member):
-        self.relation = FindRelationship(member)
+        self.relation = FindRelative(member)
 
     # returns paternal uncle
     def get_paternal_uncle(self,
